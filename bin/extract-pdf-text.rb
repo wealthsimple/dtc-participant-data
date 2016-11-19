@@ -10,7 +10,7 @@ EMPTY_LINE_REGEX = /^\s*?$\n/
 PARTICIPANT_LINE_REGEX = /(?<number>[0-9]+)\s+(?<account_name>[^\n]+)/
 
 puts "Extracting text"
-text = Yomu.new("./data/dtc_numerical_list.pdf").text
+text = Yomu.new("./vendor/dtc_numerical_list.pdf").text
 
 puts "Parsing text"
 text.gsub!(PAGE_HEADER_REGEX, "")
@@ -29,4 +29,4 @@ text.each_line do |participant_line|
 end
 
 puts "Writing raw DTC data file"
-File.write('./data/dtc-raw.json', JSON.neat_generate(participants, wrap: 200, after_comma: 1))
+File.write('./vendor/dtc-raw.json', JSON.neat_generate(participants, wrap: 200, after_comma: 1))

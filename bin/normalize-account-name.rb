@@ -43,7 +43,7 @@ def normalize_account_name(account_name)
   end
 end
 
-raw_participants = JSON.parse(File.read("./data/dtc-raw.json"))
+raw_participants = JSON.parse(File.read("./vendor/dtc-raw.json"))
 participants = []
 raw_participants.each do |participant|
   account_name = normalize_account_name(participant["account_name"])
