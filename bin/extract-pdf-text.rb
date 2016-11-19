@@ -1,4 +1,6 @@
 require "yomu"
+require "json"
+require "neatjson"
 
 PAGE_HEADER_REGEX = /NUMBER PARTICIPANT ACCOUNT NAME/i
 PAGE_SUBHEADER_REGEX = /DTC Participant Report.*?Month Ending.*?\n/mi
@@ -7,8 +9,10 @@ SHEET_REGEX = /Sheet[0-9]+\n/i
 EMPTY_LINE_REGEX = /^\s*?$\n/
 PARTICIPANT_LINE_REGEX = /(?<number>[0-9]+)\s+(?<account_name>[^\n]+)/
 
-text = Yomu.new("./dtc_numerical_list.pdf").text
+puts "Extracting text"
+text = Yomu.new("./data/dtc_numerical_list.pdf").text
 
+puts "Parsing text"
 text.gsub!(PAGE_HEADER_REGEX, "")
 text.gsub!(PAGE_SUBHEADER_REGEX, "")
 text.gsub!(SERIES_HEADER_REGEX, "")
@@ -20,8 +24,9 @@ text.each_line do |participant_line|
   match = PARTICIPANT_LINE_REGEX.match(participant_line)
   participants << {
     number: match[:number],
-    account_name: match[:account_name],
+    account_name: match[:account_name].strip,
   }
 end
 
-p participants
+puts "Writing raw DTC data file"
+File.write('./data/dtc-raw.json', JSON.neat_generate(participants, wrap: 200))
