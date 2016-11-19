@@ -54,4 +54,4 @@ raw_participants.each do |participant|
   }
 end
 
-File.write('./dtc-participant-data.json', JSON.neat_generate(participants, wrap: 200, after_comma: 1))
+File.write("./dtc-participant-data.json", JSON.neat_generate(participants, wrap: 200, after_comma: 1))
