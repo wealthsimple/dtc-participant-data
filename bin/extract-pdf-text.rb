@@ -29,4 +29,4 @@ text.each_line do |participant_line|
 end
 
 puts "Writing raw DTC data file"
-File.write('./data/dtc-raw.json', JSON.neat_generate(participants, wrap: 200))
+File.write('./data/dtc-raw.json', JSON.neat_generate(participants, wrap: 200, after_comma: 1))
