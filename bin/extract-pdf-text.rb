@@ -1,6 +1,7 @@
 require "yomu"
 require "json"
 require "neatjson"
+require "fileutils"
 
 PAGE_HEADER_REGEX = /NUMBER PARTICIPANT ACCOUNT NAME/i
 PAGE_SUBHEADER_REGEX = /DTC Participant Report.*?Month Ending.*?\n/mi
@@ -29,4 +30,5 @@ text.each_line do |participant_line|
 end
 
 puts "Writing raw DTC data file"
+FileUtils.mkdir_p("./tmp")
 File.write("./tmp/dtc-raw.json", JSON.neat_generate(participants, wrap: 200, after_comma: 1))
