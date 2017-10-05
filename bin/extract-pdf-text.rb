@@ -31,4 +31,4 @@ end
 
 puts "Writing raw DTC data file"
 FileUtils.mkdir_p("./tmp")
-File.write("./tmp/dtc-raw.json", JSON.neat_generate(participants, wrap: 200, after_comma: 1))
+File.write("./dtc-participant-data.json", JSON.neat_generate(participants, wrap: 200, after_comma: 1))
