@@ -5,8 +5,9 @@ Download: **[dtc-participant-data.json](https://raw.githubusercontent.com/6/dtc-
 
 ### Development
 
-1. Run `ruby bin/extract-pdf-text.rb`
-2. Next, run `ruby bin/normalize-account-name.rb`
+1. Download the latest Numerical Listing (pdf) from the [DTCC](http://www.dtcc.com/client-center/dtc-directories)
+2. Save it to `vendor/dtc_numerical_list.pdf`
+3. Run `ruby bin/extract-pdf-text.rb`
 
 ### Acknowledgements
 
